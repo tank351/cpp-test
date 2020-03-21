@@ -6,14 +6,13 @@ using namespace std;
 
 
 
-namespace phonetic {
 
-	std::string find(std::string text, std::string word) {
+
+	string phonetic::find(string text,string word) {
 
 		
 
-		return "happy";
+		return word;
 
 	}
 
-}
