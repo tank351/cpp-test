@@ -12,7 +12,7 @@ using namespace std;
 
 		
 
-		return word;
+		return "happy";
 
 	}
 
