@@ -26,27 +26,31 @@ TEST_CASE("Test replacement of p and b") {
 
 TEST_CASE("Test replacement of lower-case and upper-case") {
     string text = "Happi xxx yyy";
+        string text2 = "dont Vorry";
+
     CHECK(find(text, "happi") == string("Happi"));
     CHECK(find(text, "Happi") == string("Happi"));
     CHECK(find(text, "HAPPI") == string("Happi"));
     CHECK(find(text, "HaPpI") == string("Happi"));
-    CHECK(find(text, "VORRY") == string("Vorry"));
-    CHECK(find(text, "VoRRY") == string("Vorry"));
-    CHECK(find(text, "VorRY") == string("Vorry"));
-    CHECK(find(text, "VorrY") == string("Vorry"));
-    CHECK(find(text, "vorry") == string("Vorry"));
-    CHECK(find(text, "Vorry") == string("Vorry"));
+    CHECK(find(text2, "VORRY") == string("Vorry"));
+    CHECK(find(text2, "VoRRY") == string("Vorry"));
+    CHECK(find(text2, "VorRY") == string("Vorry"));
+    CHECK(find(text2, "VorrY") == string("Vorry"));
+    CHECK(find(text2, "vorry") == string("Vorry"));
+    CHECK(find(text2, "Vorry") == string("Vorry"));
 
 }
 
 TEST_CASE("Test replacement of v and w") {
-    CHECK(find(text, "worry") == string("worry"));
-    CHECK(find(text, "vorry") == string("worry"));
+    CHECK(find("dont worry", "worry") == string("worry"));
+    CHECK(find("dont worry", "vorry") == string("worry"));
 
    
 }
 
 TEST_CASE("Test replacement of p and f") {
+        string text = "happy xxx yyy";
+
     CHECK(find(text, "haffy") == string("happy"));
     CHECK(find(text, "hapfy") == string("happy"));
     CHECK(find(text, "hafpy") == string("happy"));
@@ -55,18 +59,18 @@ TEST_CASE("Test replacement of p and f") {
 
 
 TEST_CASE("Test replacement of b and f") {
-    CHECK(find(text, "fe") == string("be"));
+    CHECK(find("be happy", "fe") == string("be"));
 
 }
 
 
 TEST_CASE("Test replacement of i and y") {
-    CHECK(find(text, "worri") == string("worry"));
-    CHECK(find(text, "happi") == string("happy"));
-    CHECK(find(text, "sorri") == string("sorry"));
-    CHECK(find(text, "hurri") == string("hurry"));
-    CHECK(find(text, "easi") == string("easy"));
-    CHECK(find(text, "dairi") == string("dairy"));
+    CHECK(find("dont worry be happy", "worri") == string("worry"));
+    CHECK(find("be happy", "happi") == string("happy"));
+    CHECK(find("he is sorry", "sorri") == string("sorry"));
+    CHECK(find("please hurry", "hurri") == string("hurry"));
+    CHECK(find("take it easy", "easi") == string("easy"));
+    CHECK(find("i like dairy", "dairi") == string("dairy"));
 
 
 
@@ -74,15 +78,15 @@ TEST_CASE("Test replacement of i and y") {
 }
 
 TEST_CASE("Test replacement of o and u") {
-    CHECK(find(text, "dont") == string("dont"));
-    CHECK(find(text, "dunt") == string("dont"));
-    CHECK(find(text, "wurry") == string("worry"));
-    CHECK(find(text, "surry") == string("sorry"));
-    CHECK(find(text, "suy") == string("soy"));
-    CHECK(find(text, "alluy") == string("alloy"));
-    CHECK(find(text, "alluw") == string("allow"));
-    CHECK(find(text, "allore") == string("allure"));
-    CHECK(find(text, "orban") == string("urban"));
+    CHECK(find("dont worry", "dont") == string("dont"));
+    CHECK(find("dont worry", "dunt") == string("dont"));
+    CHECK(find("dont wurry", "wurry") == string("worry"));
+    CHECK(find("im sorry", "surry") == string("sorry"));
+    CHECK(find("soy boy", "suy") == string("soy"));
+    CHECK(find("titanuim alloy", "alluy") == string("alloy"));
+    CHECK(find("allow him to go", "alluw") == string("allow"));
+    CHECK(find("he allure", "allore") == string("allure"));
+    CHECK(find("urban exploration", "orban") == string("urban"));
 
 
 
@@ -94,12 +98,12 @@ TEST_CASE("Test replacement of o and u") {
 
 
 TEST_CASE("Test replacement of d and t") {
-    CHECK(find(text, "tont") == string("dont"));
-    CHECK(find(text, "dond") == string("dont"));
-    CHECK(find(text, "tond") == string("dont"));
-    CHECK(find(text, "tollar") == string("dollar"));
-    CHECK(find(text, "tull") == string("dull"));
-    CHECK(find(text, "dinker") == string("tinker"));
+    CHECK(find("dont worry", "tont") == string("dont"));
+    CHECK(find("dont worry", "dond") == string("dont"));
+    CHECK(find("dont worry", "tond") == string("dont"));
+    CHECK(find("dollar bill", "tollar") == string("dollar"));
+    CHECK(find("its dull", "tull") == string("dull"));
+    CHECK(find("tinker bill", "dinker") == string("tinker"));
 
 
 
@@ -108,11 +112,11 @@ TEST_CASE("Test replacement of d and t") {
 
 
 TEST_CASE("Test replacement of s and z") {
-    CHECK(find(text, "zorry") == string("sorry"));
-    CHECK(find(text, "sorry") == string("sorry"));
-    CHECK(find(text, "zelect") == string("select"));
-    CHECK(find(text, "zource") == string("source"));
-    CHECK(find(text, "zack") == string("sack"));
+    CHECK(find("he is sorry", "zorry") == string("sorry"));
+    CHECK(find("im sorry", "sorry") == string("sorry"));
+    CHECK(find("select one fruit", "zelect") == string("select"));
+    CHECK(find("source code", "zource") == string("source"));
+    CHECK(find("in the sack", "zack") == string("sack"));
 
 
 
@@ -121,17 +125,17 @@ TEST_CASE("Test replacement of s and z") {
 }
 
 TEST_CASE("Test replacement of c and k and q") {
-    CHECK(find(text, "cloud") == string("cloud"));
-    CHECK(find(text, "qloud") == string("cloud"));
+    CHECK(find("look at the cloud", "cloud") == string("cloud"));
+    CHECK(find("pretty cloud", "qloud") == string("cloud"));
 
-    CHECK(find(text, "kloud") == string("cloud"));
-    CHECK(find(text, "kar") == string("car"));
-    CHECK(find(text, "qar") == string("car"));
+    CHECK(find("pretty cloud", "kloud") == string("cloud"));
+    CHECK(find("nice car", "kar") == string("car"));
+    CHECK(find("nice car", "qar") == string("car"));
 
-    CHECK(find(text, "klown") == string("clown"));
-    CHECK(find(text, "kool") == string("cool"));
-    CHECK(find(text, "kreed") == string("creed"));
-    CHECK(find(text, "kuill") == string("quill"));
+    CHECK(find("funny clown", "klown") == string("clown"));
+    CHECK(find("its cool out", "kool") == string("cool"));
+    CHECK(find("assassins creed", "kreed") == string("creed"));
+    CHECK(find("quill and skull", "kuill") == string("quill"));
 
 
 
@@ -139,12 +143,12 @@ TEST_CASE("Test replacement of c and k and q") {
 
 
 TEST_CASE("Test replacement of g and j") {
-    CHECK(find(text, "judje") == string("judge"));
-    CHECK(find(text, "gudge") == string("judge"));
+    CHECK(find("junge and jurry", "judje") == string("judge"));
+    CHECK(find("judge and jurry", "gudge") == string("judge"));
 
-    CHECK(find(text, "gudje") == string("judge"));
-    CHECK(find(text, "gadjet") == string("gadget"));
-    CHECK(find(text, "gunk") == string("junkgit"));
+    CHECK(find("judge and jurry", "gudje") == string("judge"));
+    CHECK(find("awesome gadget", "gadjet") == string("gadget"));
+    CHECK(find("junk food", "gunk") == string("junk"));
 
 }   
 
